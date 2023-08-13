@@ -1,3 +1,5 @@
 dash==1.19.0
 Werkzeug==1.0.1
-MarkupSafe==1.1.1
+flask==2.1.1
+jinja2==3.0.2
+markupsafe==2.1.0
