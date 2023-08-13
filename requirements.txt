@@ -1,6 +1,4 @@
 dash==1.19.0
-dash-core-components==1.10
-dash-html-components==1.1.4
 Werkzeug==1.0.1
 backports.shutil-get-terminal-size==1.0.0
 sphinxcontrib-serializinghtml==1.1.4
