@@ -6,4 +6,5 @@ dash-renderer
 dash-table
 pandas
 plotly
+openpyxl
 gunicorn==19.7.1
