@@ -1,5 +1,4 @@
 dash
-numpy==1.23.0
 dash-bootstrap-components
 dash-core-components
 dash-html-components
@@ -7,3 +6,4 @@ dash-renderer
 dash-table
 pandas==1.0.0
 plotly==2.3.1
+numpy
