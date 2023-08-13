@@ -29,7 +29,6 @@ sortedcollections==1.2.1
 typing_extensions==4.5.0
 webdriver-manager==3.4.2
 win-unicode-console==0.5
-anaconda-project==0.8.3
 backports.tempfile==1.0
 ipython_genutils==0.2.0
 multipledispatch==0.6.0
