@@ -174,6 +174,3 @@ def update_financials_table(selected_companies, start_date, end_date):
     filtered_financials = filtered_financials[(filtered_financials['asOfDate'] >= start_date) & (filtered_financials['asOfDate'] <= end_date)]
 
     return filtered_financials.to_dict('records')
-
-if __name__ == '__main__':
-    app.run_server(port=8060)
