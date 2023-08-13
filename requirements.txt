@@ -6,3 +6,4 @@ dash-renderer
 dash-table
 pandas
 plotly
+gunicorn==19.7.1
