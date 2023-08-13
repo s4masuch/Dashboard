@@ -14,6 +14,9 @@ reply = str('test output')
 # Initialize the Dash app
 app = dash.Dash(__name__)
 
+# Create a server variable that points to the underlying Flask server
+server = app.server
+
 # Create a list of unique company names
 all_companies = profile_df['longName'].unique()
 
