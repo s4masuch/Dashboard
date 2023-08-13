@@ -9,7 +9,7 @@ import dash_table
 df = pd.read_excel("combined_esg_data.xlsx", sheet_name="ESG Data")
 profile_df = pd.read_excel("combined_esg_data.xlsx", sheet_name="Company Profiles")
 financials_df = pd.read_excel("combined_esg_data.xlsx", sheet_name="Financials")
-reply ="test answer"
+reply = str('test output')
 
 # Initialize the Dash app
 app = dash.Dash(__name__)
