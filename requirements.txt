@@ -22,7 +22,6 @@ charset-normalizer==2.1.1
 widgetsnbextension==3.5.1
 contextlib2==0.6.0.post1
 lazy-object-proxy==1.4.3
-navigator-updater==0.2.1
 pandas-datareader==0.9.0
 prometheus-client==0.8.0
 requests-oauthlib==1.3.0
