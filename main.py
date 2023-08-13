@@ -3,7 +3,7 @@ from dash import dcc, html
 from dash.dependencies import Input, Output, State
 import pandas as pd
 import plotly.express as px
-import dash_table
+from dash import dash_table
 
 # Load the data from the Excel files
 df = pd.read_excel("combined_esg_data.xlsx", sheet_name="ESG Data")
