@@ -18,7 +18,6 @@ sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==1.0.3
 tensorflow-estimator==2.5.0
 Keras-Preprocessing==1.1.2
-anaconda-navigator==2.0.4
 charset-normalizer==2.1.1
 widgetsnbextension==3.5.1
 contextlib2==0.6.0.post1
