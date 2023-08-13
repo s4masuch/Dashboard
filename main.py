@@ -1,12 +1,3 @@
-pip install pandas==1.3.3
-pip install dash==1.22.0
-pip install dash-core-components==1.18.1
-pip install dash-html-components==1.1.4
-pip install dash-table==5.0.0
-pip install plotly==5.3.1
-pip install xlrd==2.0.1
-
-
 import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output, State
