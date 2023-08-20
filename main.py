@@ -101,6 +101,14 @@ app.layout = html.Div([
         multiple=False
     ),
     html.Div(id='isin-status', style={'margin-top': '10px'}),
+
+    html.H2("7. Data Enhancing"),
+    html.Button('Data Enhancing', id='data-enhancing-button'),
+    dcc.Loading(
+        id="loading-enhancing",
+        type="circle",
+        children=[html.Div(id='confirmation-message', style={'margin-top': '10px'})],
+    ),
 ])
 
 
@@ -205,6 +213,23 @@ for company_name in all_companies:
             return {'max-height': '100px', 'overflow': 'hidden'}, {'max-height': '1000px', 'overflow': 'hidden'}, 'Read More'
         else:
             return {'max-height': '1000px', 'overflow': 'hidden'}, {'max-height': '1000px', 'overflow': 'hidden'}, 'Show Less'
+
+
+@app.callback(
+    Output('loading-enhancing', 'children'),
+    Input('data-enhancing-button', 'n_clicks'),
+    State('isin-status', 'children'),
+    prevent_initial_call=True
+)
+def data_enhancing(n_clicks, isin_status):
+    if "could be processed" in isin_status:
+        df, profile_df, financials_df = create_data_frames(isin_list)  # Assuming isin_list is accessible
+        save_data_frames(df, profile_df, financials_df)
+        return None
+    else:
+        return "Please upload ISINs first."
+
+
 
 # Callback to update financials table
 @app.callback(
