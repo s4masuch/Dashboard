@@ -7,4 +7,5 @@ dash-table
 pandas
 plotly
 openpyxl
+yfinance
 gunicorn==19.7.1
