@@ -4,6 +4,9 @@ from dash.dependencies import Input, Output, State
 import pandas as pd
 import plotly.express as px
 from dash import dash_table
+from dash import dcc, html, Input, Output, State
+from upload_utils import process_isins  # Import the function from the module
+
 
 # Load the data from the Excel files
 df = pd.read_excel("combined_esg_data.xlsx", sheet_name="ESG Data")
@@ -91,7 +94,35 @@ app.layout = html.Div([
         rows=30,
         style={'width': '100%'}
     ),
+    html.H2("6. Upload ISINs"),
+    dcc.Upload(
+        id='upload-data',
+        children=html.Button('Upload File'),
+        multiple=False
+    ),
+    html.Div(id='isin-status', style={'margin-top': '10px'}),
 ])
+
+
+# Callback to upload the ISINs
+@app.callback(
+    Output('isin-status', 'children'),
+    Input('upload-button', 'n_clicks'),
+    State('upload-data', 'contents'),
+    prevent_initial_call=True
+)
+def upload_isins(n_clicks, contents):
+    # Extract uploaded content, process ISINs, and display status
+    if contents is None:
+        return "No file uploaded."
+    
+    isin_data = contents[0]['content']
+    isin_list = isin_data.decode('utf-8').splitlines()  # Convert content to list
+    processed_count = process_isins(isin_list)
+    
+    status = f"{processed_count}/{len(isin_list)} provided ISINs could be processed."
+    return status
+
 
 # Callback to update the graph and company tiles
 @app.callback(
