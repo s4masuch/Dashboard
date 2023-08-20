@@ -8,4 +8,5 @@ pandas
 plotly
 openpyxl
 yfinance
+yahooquery
 gunicorn==19.7.1
