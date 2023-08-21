@@ -97,10 +97,11 @@ app.layout = html.Div([
     html.H2("6. Upload ISINs"),
     dcc.Upload(
         id='upload-data',
-        children=html.Button('Upload File'),
+        children=html.Button('Upload ISINs'),
         multiple=False
     ),
     html.Div(id='isin-status', style={'margin-top': '10px'}),
+    html.Div(id='confirmation-message', style={'margin-top': '10px'}),
 
     html.H2("7. Data Enhancing"),
     html.Button('Data Enhancing', id='data-enhancing-button'),
@@ -116,24 +117,21 @@ app.layout = html.Div([
 @app.callback(
     [Output('isin-status', 'children'),
      Output('confirmation-message', 'children')],
-    Input('upload-button', 'n_clicks'),
-    State('upload-data', 'contents'),
+    Input('upload-data', 'contents'),
     prevent_initial_call=True
 )
-def upload_isins(n_clicks, contents):
-    # Extract uploaded content, process ISINs, and display status
+def upload_isins(contents):
     if contents is None:
         return "No file uploaded.", None
     
     isin_data = contents[0]['content']
-    isin_list = isin_data.decode('utf-8').splitlines()  # Convert content to list
-    processed_count = process_isins(isin_list)
-    
+    isin_list = isin_data.decode('utf-8').splitlines()
+    processed_count = process_isins(isin_list)  # Assuming process_isins function is defined
+
     status = f"{processed_count}/{len(isin_list)} provided ISINs could be processed."
     confirmation_message = None
 
     if processed_count > 0:
-        # Process ISINs, create data frames, and display confirmation
         df, profile_df, financials_df = create_data_frames(isin_list)
         save_data_frames(df, profile_df, financials_df)
         confirmation_message = f"DataFrames saved successfully."
