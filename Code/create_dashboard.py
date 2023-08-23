@@ -11,19 +11,10 @@ from upload_ISINs import upload_isins_from_file
 from create_data_frames import create_data_frames
 from enhancing_with_GPT import enhance_data
 
-
-from enhancing_with_GPT import enhance_data
-
-
-
-
-
-
 # Load the data from the Excel files
 df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="ESG Data")
 profile_df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="Company Profiles")
 financials_df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="Financials")
-reply = ""
 
 # Path to the directory for ISIN uploads
 isin_upload_dir = "Code/Data/ISIN-Upload/"
@@ -123,22 +114,19 @@ html.Div(id='chatgpt-opinion',
         ),
 ])
 
-
 # Callback to get ChatGPT answer
-# Updated callback to set the enhanced reply
 @app.callback(
-    Output('chatgpt-opinion', 'children'),  # Changed Output component to 'children'
+    Output('chatgpt-opinion', 'children'),  # Update the 'children' property
     Input('data-enhancing-button', 'n_clicks'),
     State('isin-status', 'children'),
     prevent_initial_call=True
 )
 def data_enhancing_callback(n_clicks, isin_status):
-    global reply
     if "could be processed" in isin_status:
         excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
         enhanced_reply = enhance_data(excel_filename)
-        reply = enhanced_reply
-        return enhanced_reply  # Return the enhanced reply as 'children' of the html.Div
+        print(f"ChatGPT: {enhanced_reply}")  # Print the enhanced reply here
+        return enhanced_reply  # Update the 'children' property of the html.Div
     else:
         return dash.no_update
 
