@@ -15,23 +15,8 @@ from enhancing_with_GPT import enhance_data
 from enhancing_with_GPT import enhance_data
 
 
-@app.callback(
-    Output('chatgpt-opinion', 'value'),
-    Input('data-enhancing-button', 'n_clicks'),
-    State('isin-status', 'children'),
-    prevent_initial_call=True
-)
-def data_enhancing_callback(n_clicks, isin_status):
-    if "could be processed" in isin_status:
-        excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
-        enhanced_reply = enhance_data(excel_filename)
-        return enhanced_reply
-    else:
-        return dash.no_update
 
 
-# Print the enhanced reply
-print(f"ChatGPT: {enhanced_reply}")
 
 
 # Load the data from the Excel files
@@ -139,6 +124,25 @@ app.layout = html.Div([
         style={'width': '100%'}
     ),
 ])
+
+
+# Callback to get ChatGPT answer
+@app.callback(
+    Output('chatgpt-opinion', 'value'),
+    Input('data-enhancing-button', 'n_clicks'),
+    State('isin-status', 'children'),
+    prevent_initial_call=True
+)
+def data_enhancing_callback(n_clicks, isin_status):
+    if "could be processed" in isin_status:
+        excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
+        enhanced_reply = enhance_data(excel_filename)
+        return enhanced_reply
+    else:
+        return dash.no_update
+        
+# Print the enhanced reply
+print(f"ChatGPT: {enhanced_reply}")
 
 
 # Callback to upload the ISINs
