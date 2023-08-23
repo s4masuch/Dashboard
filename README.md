@@ -14,6 +14,13 @@ Data originates from Yahoo! Finance, established in 1997. It is a vital part of 
 
 Features include comprehensive financial news, cryptocurrency coverage (9,000+ unique coins listed), and online tools for personal finance management. While Yahoo! Finance ranks 20th on SimilarWeb's list of major news websites, it's prudent to cross-reference data from multiple sources for comprehensive research.
 
+## ESG-Data definitions
+
+### Environmental
+
+### Social
+
+### Governance
 
 
 # Server environment
