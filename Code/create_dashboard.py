@@ -143,9 +143,7 @@ def data_enhancing_callback(n_clicks, isin_status):
         return enhanced_reply
     else:
         return dash.no_update
-        
-# Print the enhanced reply
-print(f"ChatGPT: {enhanced_reply}")
+
 
 
 # Callback to upload the ISINs
