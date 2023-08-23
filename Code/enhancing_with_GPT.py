@@ -1,8 +1,6 @@
 import openai
 import pandas as pd
 
-api_key = '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'
-excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
 
 def enhance_data(api_key, excel_filename):
     try:
@@ -10,6 +8,9 @@ def enhance_data(api_key, excel_filename):
         openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[])
     except openai.error.AuthenticationError as e:
         return f"Error: Incorrect API key provided - {e.message}"
+    
+    api_key = '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'  # Make sure this line is properly indented
+    excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
     
     openai.api_key = api_key
     # Load the latest financials data from Excel
