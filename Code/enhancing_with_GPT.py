@@ -9,11 +9,6 @@ def enhance_data(excel_filename):
     
     openai.api_key = api_key
     
-    try:
-        openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[])
-    except openai.error.AuthenticationError as e:
-        return f"Error: Incorrect API key provided - {str(e)}"
-    
     excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
     
     # Load the latest financials data from Excel
@@ -43,8 +38,9 @@ def enhance_data(excel_filename):
     )
     
     # Get the assistant's reply
-    reply = chat.choices[0].message['content']
-    return reply
+    assistant_reply = chat.choices[0].message['content']
+    
+    return assistant_reply
 
 # Example usage
 excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
