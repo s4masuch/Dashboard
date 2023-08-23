@@ -3,7 +3,7 @@ import pandas as pd
 # Set your OpenAI API key
 openai.api_key = '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'
 # Load the latest financials data from Excel
-excel_filename = 'latest_financials.xlsx'
+excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
 financials_df = pd.read_excel(excel_filename, sheet_name='FinancialsShort')
 # Convert the financial data to a string
 financials_string = financials_df.to_string(index=False)
