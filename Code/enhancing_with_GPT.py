@@ -1,7 +1,12 @@
+import os
 import openai
 import pandas as pd
 
-def enhance_data(api_key, excel_filename):
+def enhance_data(excel_filename):
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if api_key is None:
+        return "Error: OpenAI API key not set"
+    
     openai.api_key = api_key
     
     try:
@@ -42,7 +47,6 @@ def enhance_data(api_key, excel_filename):
     return reply
 
 # Example usage
-api_key = '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'
 excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
 enhanced_reply = enhance_data(api_key, excel_filename)
 print(f"ChatGPT: {enhanced_reply}")
