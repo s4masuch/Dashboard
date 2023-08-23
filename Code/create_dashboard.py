@@ -107,16 +107,16 @@ app.layout = html.Div([
             )
         ],
     ),
-html.H2("5. ChatGPT opinion"),
-html.Div(id='chatgpt-opinion', 
-         children=enhanced_reply, 
-         style={'whiteSpace': 'pre-wrap', 'font-family': 'monospace'}
-        ),
+    html.H2("5. ChatGPT opinion"),
+    # Use an empty Div with a specific ID for the opinion
+    html.Div(id='chatgpt-opinion-placeholder',
+             style={'whiteSpace': 'pre-wrap', 'font-family': 'monospace'}
+    ),
 ])
 
 # Callback to get ChatGPT answer
 @app.callback(
-    Output('chatgpt-opinion', 'children'),  # Update the 'children' property
+    Output('chatgpt-opinion-placeholder', 'children'),  # Update the content of the placeholder Div
     Input('data-enhancing-button', 'n_clicks'),
     State('isin-status', 'children'),
     prevent_initial_call=True
@@ -126,7 +126,7 @@ def data_enhancing_callback(n_clicks, isin_status):
         excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
         enhanced_reply = enhance_data(excel_filename)
         print(f"ChatGPT: {enhanced_reply}")  # Print the enhanced reply here
-        return enhanced_reply  # Update the 'children' property of the html.Div
+        return enhanced_reply  # Update the content of the placeholder Div
     else:
         return dash.no_update
 
