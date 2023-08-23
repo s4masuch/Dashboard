@@ -11,6 +11,19 @@ from upload_ISINs import upload_isins_from_file
 from create_data_frames import create_data_frames
 from enhancing_with_GPT import enhance_data
 
+
+from enhancing_with_GPT import enhance_data
+
+# Define the path to the Excel file
+excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
+
+# Call the enhance_data function
+enhanced_reply = enhance_data(excel_filename)
+
+# Print the enhanced reply
+print(f"ChatGPT: {enhanced_reply}")
+
+
 # Load the data from the Excel files
 df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="ESG Data")
 profile_df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="Company Profiles")
