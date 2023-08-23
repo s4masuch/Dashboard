@@ -17,5 +17,4 @@ Features include comprehensive financial news, cryptocurrency coverage (9,000+ u
 
 
 # Server environment
-This dashboard runs on a Render environment: [[Link Text](https://dashboard-dpsy.onrender.com/)https://dashboard-dpsy.onrender.com/]([URL](https://dashboard-dpsy.onrender.com/)https://dashboard-dpsy.onrender.com/).
-
+This dashboard runs on a Render environment: [https://dashboard-dpsy.onrender.com/](https://dashboard-dpsy.onrender.com/). 
