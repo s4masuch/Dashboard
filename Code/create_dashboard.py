@@ -139,10 +139,10 @@ def data_enhancing_callback(n_clicks, isin_status):
         excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
         enhanced_reply = enhance_data(excel_filename)
         reply = enhanced_reply  # Update the global reply variable
+        print(f"ChatGPT: {enhanced_reply}")  # Print the enhanced reply here
         return enhanced_reply
     else:
         return dash.no_update
-
         
 # Print the enhanced reply
 print(f"ChatGPT: {enhanced_reply}")
