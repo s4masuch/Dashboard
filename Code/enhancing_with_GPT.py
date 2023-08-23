@@ -46,6 +46,7 @@ def enhance_data(excel_filename):
     reply = chat.choices[0].message['content']
     return reply
 
-# Example usageexcel_filename = 'Data/Data_Frames/latest_financials.xlsx'
+# Example usage
+excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
 enhanced_reply = enhance_data(excel_filename)
 print(f"ChatGPT: {enhanced_reply}")
