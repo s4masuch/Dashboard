@@ -3,8 +3,6 @@ import pandas as pd
 
 api_key = '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'
 excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
-enhanced_reply = enhance_data(api_key, excel_filename)
-print(f"ChatGPT: {enhanced_reply}")
 
 def enhance_data(api_key, excel_filename):
     try:
