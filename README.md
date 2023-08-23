@@ -13,3 +13,9 @@ The underlying architecture is modularized.
 Data originates from Yahoo! Finance, established in 1997. It is a vital part of the Yahoo! network, providing financial news, data, and original content. With headquarters in New York City, it offers a wide range of services including stock quotes, financial reports, and personal finance tools. Its 26-year history of reliability has made it a trusted source in the financial world.
 
 Features include comprehensive financial news, cryptocurrency coverage (9,000+ unique coins listed), and online tools for personal finance management. While Yahoo! Finance ranks 20th on SimilarWeb's list of major news websites, it's prudent to cross-reference data from multiple sources for comprehensive research.
+
+
+
+# Server environment
+This dashboard runs on a Render environment: [[Link Text](https://dashboard-dpsy.onrender.com/)https://dashboard-dpsy.onrender.com/]([URL](https://dashboard-dpsy.onrender.com/)https://dashboard-dpsy.onrender.com/).
+
