@@ -1,14 +1,12 @@
 import openai
 import pandas as pd
 
-def enhance_data(api_key, excel_filename):
-
 api_key = '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'
 excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
 enhanced_reply = enhance_data(api_key, excel_filename)
 print(f"ChatGPT: {enhanced_reply}")
 
-
+def enhance_data(api_key, excel_filename):
     try:
         openai.api_key = api_key
         openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[])
