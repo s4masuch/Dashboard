@@ -9,7 +9,7 @@ from dash import dcc, html, Input, Output, State
 # Custom functions from my modules
 from upload_ISINs import upload_isins_from_file
 from create_data_frames import create_data_frames
-from enhance_data import enhance_data
+from enhancing_with_GPT import enhance_data
 
 # Load the data from the Excel files
 df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="ESG Data")
