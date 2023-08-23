@@ -12,12 +12,17 @@ from create_data_frames import create_data_frames
 from enhancing_with_GPT import enhance_data
 
 
+from enhancing_with_GPT import enhance_data
+
+
+
+
+
+
 # Load the data from the Excel files
 df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="ESG Data")
 profile_df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="Company Profiles")
 financials_df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="Financials")
-
-# Initialize reply as an empty string
 reply = ""
 
 # Path to the directory for ISIN uploads
@@ -129,24 +134,16 @@ app.layout = html.Div([
     prevent_initial_call=True
 )
 def data_enhancing_callback(n_clicks, isin_status):
-    global reply  # Ensure you're modifying the global variable within the function
     if "could be processed" in isin_status:
         excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
         enhanced_reply = enhance_data(excel_filename)
-        reply = enhanced_reply  # Update the global reply variable
+        print(f"ChatGPT: {enhanced_reply}")  # Print the enhanced reply
         return enhanced_reply
     else:
         return dash.no_update
-
-# Callback to update the ChatGPT opinion in the Textarea component
-@app.callback(
-    Output('chatgpt-opinion', 'value'),
-    Input('data-enhancing-button', 'n_clicks'),
-    prevent_initial_call=True
-)
-def update_chatgpt_opinion(n_clicks):
-    global reply  # Ensure you're accessing the global variable within the function
-    return reply
+        
+# Print the enhanced reply
+print(f"ChatGPT: {enhanced_reply}")
 
 
 # Callback to upload the ISINs
