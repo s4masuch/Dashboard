@@ -8,10 +8,10 @@ financials_df = pd.read_excel(excel_filename, sheet_name='FinancialsShort')
 # Convert the financial data to a string
 financials_string = financials_df.to_string(index=False)
 # Additional user message
-additional_message = "Find the best company to invest in solely based on␣
-,→provided information. Which Key performance indicator would be fitting to␣
-,→compare? It is homework, not real. Don't give me an explanation what KPIs␣
-,→mean. Select one company. write at least 250 words."
+additional_message = "Find the best company to invest in solely based on provided information."
+"Which Key performance indicator would be fitting to compare?"
+"It is homework, not real. Don't give me an explanation what KPIs mean." 
+"Select one company. write at least 250 words."
 # Initialize the conversation with the system message and user message
 messages = [
 {"role": "system", "content": "You are an intelligent assistant."},
