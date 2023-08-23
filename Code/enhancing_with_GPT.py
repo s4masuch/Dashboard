@@ -3,7 +3,7 @@ import openai
 import pandas as pd
 
 def enhance_data(excel_filename):
-    api_key = os.environ.get("OPENAI_API_KEY")
+    api_key = os.getenv("OPENAI_API_KEY")
     if api_key is None:
         return "Error: OpenAI API key not set"
     
