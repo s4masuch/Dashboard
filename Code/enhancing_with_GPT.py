@@ -2,9 +2,14 @@ import openai
 import pandas as pd
 
 def enhance_data(api_key, excel_filename):
-    # Set your OpenAI API key
-    openai.api_key = api_key
+
+    try:
+        openai.api_key = api_key
+        openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[])
+    except openai.error.AuthenticationError as e:
+        return f"Error: Incorrect API key provided - {e.message}"
     
+    openai.api_key = api_key
     # Load the latest financials data from Excel
     financials_df = pd.read_excel(excel_filename, sheet_name='FinancialsShort')
     
