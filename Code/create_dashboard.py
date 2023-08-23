@@ -5,7 +5,7 @@ import pandas as pd
 import plotly.express as px
 from dash import dash_table
 from dash import dcc, html, Input, Output, State
-from upload_utils import process_isins  # Import the function from the module
+# from upload_utils import process_isins  # Import the function from the module
 
 
 # Load the data from the Excel files
