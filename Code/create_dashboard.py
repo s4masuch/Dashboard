@@ -7,7 +7,6 @@ from dash import dash_table
 from dash import dcc, html, Input, Output, State
 # from upload_utils import process_isins  # Import the function from the module
 
-
 # Load the data from the Excel files
 df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="ESG Data")
 profile_df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="Company Profiles")
@@ -25,9 +24,24 @@ all_companies = profile_df['longName'].unique()
 
 # Define the layout of the dashboard
 app.layout = html.Div([
-    html.H1("Company analytics dashboard for portfolio managers"),
-    
-    html.H2("1. Filter"),
+    html.H2("Upload ISINs"),
+    dcc.Upload(
+        id='upload-data',
+        children=html.Button('Upload ISINs'),
+        multiple=False
+    ),
+    html.Div(id='isin-status', style={'margin-top': '10px'}),
+    html.Div(id='confirmation-message', style={'margin-top': '10px'}),
+
+    html.H2("Data Enhancing"),
+    html.Button('Data Enhancing', id='data-enhancing-button'),
+    dcc.Loading(
+        id="loading-enhancing",
+        type="circle",
+        children=[html.Div(id='confirmation-message', style={'margin-top': '10px'})],
+    ),
+
+    # html.H2("1. Filter"),
     html.Div([
         dcc.Dropdown(
             id='company-dropdown',
@@ -93,22 +107,6 @@ app.layout = html.Div([
         value=reply,
         rows=30,
         style={'width': '100%'}
-    ),
-    html.H2("6. Upload ISINs"),
-    dcc.Upload(
-        id='upload-data',
-        children=html.Button('Upload ISINs'),
-        multiple=False
-    ),
-    html.Div(id='isin-status', style={'margin-top': '10px'}),
-    html.Div(id='confirmation-message', style={'margin-top': '10px'}),
-
-    html.H2("7. Data Enhancing"),
-    html.Button('Data Enhancing', id='data-enhancing-button'),
-    dcc.Loading(
-        id="loading-enhancing",
-        type="circle",
-        children=[html.Div(id='confirmation-message', style={'margin-top': '10px'})],
     ),
 ])
 
