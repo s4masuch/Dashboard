@@ -17,6 +17,9 @@ profile_df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name
 financials_df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="Financials")
 reply = str('test output')
 
+# Path to the directory for ISIN uploads
+isin_upload_dir = "Code/Data/ISIN-Upload/"
+
 # Initialize the Dash app
 app = dash.Dash(__name__)
 
@@ -126,11 +129,19 @@ def upload_isins(contents):
     if contents is None:
         return "No file uploaded.", None
     
-    isin_data = contents[0]['content']
-    isin_list = isin_data.decode('utf-8').splitlines()
-    processed_count = upload_isins(isin_list)  # Assuming process_isins function is defined
+    # Get the content of the uploaded file
+    content_type, content_string = contents[0].split(',')
+    decoded = base64.b64decode(content_string)
+    
+    # Save the uploaded content as a file in the ISIN upload directory
+    file_path = os.path.join(isin_upload_dir, 'ISIN Input.csv')
+    with open(file_path, 'wb') as f:
+        f.write(decoded)
+    
+    # Process the uploaded ISINs
+    processed_count = upload_isins_from_file(file_path)
 
-    status = f"{processed_count}/{len(isin_list)} provided ISINs could be processed."
+    status = f"{processed_count} ISINs could be processed."
     confirmation_message = None
 
     if processed_count > 0:
@@ -139,10 +150,6 @@ def upload_isins(contents):
         confirmation_message = f"DataFrames saved successfully."
     
     return status, confirmation_message
-
-
-
-
 
 
 # Callback to update the graph and company tiles
