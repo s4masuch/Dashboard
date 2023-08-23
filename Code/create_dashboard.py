@@ -12,13 +12,6 @@ from create_data_frames import create_data_frames
 from enhancing_with_GPT import enhance_data
 
 
-from enhancing_with_GPT import enhance_data
-
-
-
-
-
-
 # Load the data from the Excel files
 df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="ESG Data")
 profile_df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="Company Profiles")
@@ -141,9 +134,6 @@ def data_enhancing_callback(n_clicks, isin_status):
         return enhanced_reply
     else:
         return dash.no_update
-        
-# Print the enhanced reply
-print(f"ChatGPT: {enhanced_reply}")
 
 
 # Callback to upload the ISINs
