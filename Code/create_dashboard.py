@@ -137,6 +137,7 @@ def data_enhancing_callback(n_clicks, isin_status):
     if "could be processed" in isin_status:
         excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
         enhanced_reply = enhance_data(excel_filename)
+        print(f"ChatGPT: {enhanced_reply}")  # Print the enhanced reply
         return enhanced_reply
     else:
         return dash.no_update
