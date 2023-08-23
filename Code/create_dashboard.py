@@ -116,31 +116,29 @@ app.layout = html.Div([
             )
         ],
     ),
-    html.H2("5. ChatGPT opinion"),
-    dcc.Textarea(
-        id='chatgpt-opinion',
-        value=reply,
-        rows=30,
-        style={'width': '100%'}
-    ),
+html.H2("5. ChatGPT opinion"),
+html.Div(id='chatgpt-opinion', 
+         children=reply, 
+         style={'whiteSpace': 'pre-wrap', 'font-family': 'monospace'}
+        ),
 ])
 
 
 # Callback to get ChatGPT answer
+# Updated callback to set the enhanced reply
 @app.callback(
-    Output('chatgpt-opinion', 'value'),
+    Output('chatgpt-opinion', 'children'),  # Changed Output component to 'children'
     Input('data-enhancing-button', 'n_clicks'),
     State('isin-status', 'children'),
     prevent_initial_call=True
 )
 def data_enhancing_callback(n_clicks, isin_status):
-    global reply  # Ensure you're modifying the global variable within the function
+    global reply
     if "could be processed" in isin_status:
         excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
         enhanced_reply = enhance_data(excel_filename)
-        reply = enhanced_reply  # Update the global reply variable
-        print(f"ChatGPT: {enhanced_reply}")  # Print the enhanced reply here
-        return enhanced_reply
+        reply = enhanced_reply
+        return enhanced_reply  # Return the enhanced reply as 'children' of the html.Div
     else:
         return dash.no_update
 
