@@ -109,7 +109,7 @@ app.layout = html.Div([
     ),
 html.H2("5. ChatGPT opinion"),
 html.Div(id='chatgpt-opinion', 
-         children=reply, 
+         children=enhanced_reply, 
          style={'whiteSpace': 'pre-wrap', 'font-family': 'monospace'}
         ),
 ])
