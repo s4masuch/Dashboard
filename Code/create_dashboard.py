@@ -134,13 +134,15 @@ app.layout = html.Div([
     prevent_initial_call=True
 )
 def data_enhancing_callback(n_clicks, isin_status):
+    global reply  # Ensure you're modifying the global variable within the function
     if "could be processed" in isin_status:
         excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
         enhanced_reply = enhance_data(excel_filename)
-        print(f"ChatGPT: {enhanced_reply}")  # Print the enhanced reply
+        reply = enhanced_reply  # Update the global reply variable
         return enhanced_reply
     else:
         return dash.no_update
+
         
 # Print the enhanced reply
 print(f"ChatGPT: {enhanced_reply}")
