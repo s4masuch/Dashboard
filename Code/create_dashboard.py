@@ -122,7 +122,6 @@ app.layout = html.Div([
 
 
 # Callback to get ChatGPT answer
-# Callback to get ChatGPT answer
 @app.callback(
     Output('chatgpt-opinion', 'value'),
     Input('data-enhancing-button', 'n_clicks'),
@@ -138,6 +137,16 @@ def data_enhancing_callback(n_clicks, isin_status):
         return enhanced_reply
     else:
         return dash.no_update
+
+# Callback to update the ChatGPT opinion in the Textarea component
+@app.callback(
+    Output('chatgpt-opinion', 'value'),
+    Input('data-enhancing-button', 'n_clicks'),
+    prevent_initial_call=True
+)
+def update_chatgpt_opinion(n_clicks):
+    global reply  # Ensure you're accessing the global variable within the function
+    return reply
 
 
 # Callback to upload the ISINs
