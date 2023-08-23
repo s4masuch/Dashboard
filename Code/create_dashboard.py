@@ -7,7 +7,7 @@ from dash import dash_table
 from dash import dcc, html, Input, Output, State
 
 # Custom functions from my modules
-from upload_ISINs import upload_isins
+from upload_ISINs import upload_isins_from_file
 from create_data_frames import create_data_frames
 from enhance_data import enhance_data
 
