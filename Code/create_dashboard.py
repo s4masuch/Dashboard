@@ -5,7 +5,11 @@ import pandas as pd
 import plotly.express as px
 from dash import dash_table
 from dash import dcc, html, Input, Output, State
-# from upload_utils import process_isins  # Import the function from the module
+
+# Custom functions from my modules
+from upload_ISINs import upload_isins
+from create_data_frames import create_data_frames
+from enhance_data import enhance_data
 
 # Load the data from the Excel files
 df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="ESG Data")
@@ -124,7 +128,7 @@ def upload_isins(contents):
     
     isin_data = contents[0]['content']
     isin_list = isin_data.decode('utf-8').splitlines()
-    processed_count = process_isins(isin_list)  # Assuming process_isins function is defined
+    processed_count = upload_isins(isin_list)  # Assuming process_isins function is defined
 
     status = f"{processed_count}/{len(isin_list)} provided ISINs could be processed."
     confirmation_message = None
