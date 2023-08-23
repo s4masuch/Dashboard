@@ -1,7 +1,0 @@
-Main functionalities:
-- Allow CSV upload
-- Integrate yahoo service to gather and structure data
-- ChatGPT integration
-
-Add-Ons:
-- Additional data
