@@ -118,10 +118,11 @@ app.layout = html.Div([
 # Callback to get ChatGPT answer
 @app.callback(
     Output('chatgpt-opinion-placeholder', 'children'),
-    Input('isin-status', 'children'),
+    Input('upload-data', 'contents'),
+    State('isin-status', 'children'),
     prevent_initial_call=True
 )
-def data_enhancing_callback(isin_status):
+def data_enhancing_callback(contents, isin_status):
     if "could be processed" in isin_status:
         excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
         enhanced_reply = enhance_data(excel_filename)
@@ -129,6 +130,7 @@ def data_enhancing_callback(isin_status):
         return enhanced_reply
     else:
         return None
+
 
 
 
