@@ -8,7 +8,7 @@ from dash import dcc, html, Input, Output, State
 import base64
 
 # Custom functions from my modules
-from upload_ISINs import upload_isins_from_file
+from upload_ISINs import upload_isins_from_file, upload_isins_to_github
 from create_data_frames import create_data_frames
 from enhancing_with_GPT import enhance_data
 
@@ -145,7 +145,7 @@ def upload_isins(contents):
         f.write(decoded)
     
     # Process the uploaded ISINs
-    processed_count = upload_isins_from_file(file_path)
+    processed_count, upload_result = upload_isins_from_file(file_path)
 
     status = f"{processed_count} ISINs could be processed."
     confirmation_message = None
@@ -153,9 +153,11 @@ def upload_isins(contents):
     if processed_count > 0:
         df, profile_df, financials_df = create_data_frames(isin_list)
         save_data_frames(df, profile_df, financials_df)
-        confirmation_message = f"DataFrames saved successfully."
+        confirmation_message = f"DataFrames saved successfully. Upload result: {upload_result}"
     
     return status, confirmation_message
+
+
 
 
 # Callback to update the graph and company tiles
