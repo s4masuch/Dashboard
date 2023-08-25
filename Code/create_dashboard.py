@@ -142,7 +142,7 @@ def upload_isins(contents):
     file_path = os.path.join(isin_upload_dir, 'ISIN Input.csv')
     
     # Process the uploaded ISINs and get the processed count
-    processed_count = upload_isins_from_file(file_path, content_string)
+    processed_count = upload_isins_from_file(file_path)
 
     status = f"{processed_count} ISINs could be processed."
     confirmation_message = None
