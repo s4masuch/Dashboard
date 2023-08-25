@@ -29,7 +29,11 @@ def upload_isins_to_github(file_path, file_content):
         return f"Error updating file on GitHub: {response.text}"
 
 # Call this function with the file content to update the file on GitHub
-def upload_isins_from_file(file_path):
+def upload_isins_from_file(file_path, content_string):
+    # Save the uploaded content as a file in the ISIN upload directory
+    with open(file_path, 'wb') as f:
+        f.write(base64.b64decode(content_string))
+
     # Read ISINs from the provided file_path
     isin_list = []
     with open(file_path, 'r') as file:
@@ -40,12 +44,8 @@ def upload_isins_from_file(file_path):
     for isin in isin_list:
         if check_isin(isin):
             processed_count += 1
-    
-    # Read the content of the file and upload it to GitHub
-    with open(file_path, 'rb') as file:
-        file_content = file.read()
-        upload_result = upload_isins_to_github(FILE_PATH, file_content)
-        return processed_count, upload_result
+
+    return processed_count
 
 # Example usage
 file_path = "Code/Data/ISIN-Upload/ISIN Input.csv"
