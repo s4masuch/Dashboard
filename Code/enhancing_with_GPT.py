@@ -1,7 +1,9 @@
 import os
 import openai
 import pandas as pd
+from tenacity import retry, stop_after_attempt, wait_fixed
 
+@retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
 def enhance_data(excel_filename):
     api_key = os.getenv("OPENAI_API_KEY")
     if api_key is None:
