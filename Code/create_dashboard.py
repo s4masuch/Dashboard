@@ -123,7 +123,7 @@ app.layout = html.Div([
     prevent_initial_call=True
 )
 def data_enhancing_callback(n_clicks, isin_status):
-    if "could be processed" in isin_status:
+    if "could be processed" in isin_status or n_clicks is None:
         excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
         enhanced_reply = enhance_data(excel_filename)
         print(f"ChatGPT: {enhanced_reply}")
