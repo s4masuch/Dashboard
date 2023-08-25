@@ -5,6 +5,7 @@ import pandas as pd
 import plotly.express as px
 from dash import dash_table
 from dash import dcc, html, Input, Output, State
+import base64
 
 # Custom functions from my modules
 from upload_ISINs import upload_isins_from_file
@@ -116,7 +117,7 @@ app.layout = html.Div([
 
 # Callback to get ChatGPT answer
 @app.callback(
-    Output('chatgpt-opinion-placeholder', 'children'),  # Update the content of the placeholder Div
+    Output('chatgpt-opinion-placeholder', 'children'),
     Input('data-enhancing-button', 'n_clicks'),
     State('isin-status', 'children'),
     prevent_initial_call=True
@@ -125,8 +126,8 @@ def data_enhancing_callback(n_clicks, isin_status):
     if "could be processed" in isin_status:
         excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
         enhanced_reply = enhance_data(excel_filename)
-        print(f"ChatGPT: {assistant_reply}")  # Print the enhanced reply here
-        return assistant_reply  # Update the content of the placeholder Div
+        print(f"ChatGPT: {enhanced_reply}")
+        return enhanced_reply
     else:
         return dash.no_update
 
