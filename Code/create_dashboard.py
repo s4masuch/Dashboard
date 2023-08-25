@@ -157,6 +157,8 @@ def upload_isins(contents):
 
 
 
+
+
 # Callback to update the graph and company tiles
 @app.callback(
     [Output('esg-graph', 'figure'), Output('company-tiles', 'children')],
