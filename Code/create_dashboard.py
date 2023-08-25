@@ -137,15 +137,12 @@ def upload_isins(contents):
     
     # Get the content of the uploaded file
     content_type, content_string = contents[0].split(',')
-    decoded = base64.b64decode(content_string)
     
-    # Save the uploaded content as a file in the ISIN upload directory
+    # Construct the file path
     file_path = os.path.join(isin_upload_dir, 'ISIN Input.csv')
-    with open(file_path, 'wb') as f:
-        f.write(decoded)
     
-    # Process the uploaded ISINs
-    processed_count, upload_result = upload_isins_from_file(file_path)
+    # Process the uploaded ISINs and get the processed count
+    processed_count = upload_isins_from_file(file_path, content_string)
 
     status = f"{processed_count} ISINs could be processed."
     confirmation_message = None
@@ -153,7 +150,7 @@ def upload_isins(contents):
     if processed_count > 0:
         df, profile_df, financials_df = create_data_frames(isin_list)
         save_data_frames(df, profile_df, financials_df)
-        confirmation_message = f"DataFrames saved successfully. Upload result: {upload_result}"
+        confirmation_message = f"DataFrames saved successfully."
     
     return status, confirmation_message
 
