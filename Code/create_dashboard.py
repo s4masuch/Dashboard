@@ -29,6 +29,11 @@ server = app.server
 # Create a list of unique company names
 all_companies = profile_df['longName'].unique()
 
+# Get ChatGPT message
+excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
+enhanced_reply = enhance_data(excel_filename)
+chatgpt_message = f"ChatGPT: {enhanced_reply}"
+
 # Define the layout of the dashboard
 app.layout = html.Div([
     html.H2("Upload ISINs"),
@@ -109,27 +114,12 @@ app.layout = html.Div([
         ],
     ),
     html.H2("5. ChatGPT opinion"),
-    # Use an empty Div with a specific ID for the opinion
-    html.Div(id='chatgpt-opinion-placeholder',
+    # Display ChatGPT message
+    html.Div(chatgpt_message, id='chatgpt-opinion-placeholder',
              style={'whiteSpace': 'pre-wrap', 'font-family': 'monospace'}
     ),
 ])
 
-# Callback to get ChatGPT answer
-@app.callback(
-    Output('chatgpt-opinion-placeholder', 'children'),
-    Input('upload-data', 'contents'),
-    State('isin-status', 'children'),
-    prevent_initial_call=True
-)
-def data_enhancing_callback(contents, isin_status):
-    if "could be processed" in isin_status:
-        excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
-        enhanced_reply = enhance_data(excel_filename)
-        print(f"ChatGPT: {enhanced_reply}")
-        return enhanced_reply
-    else:
-        return None
 
 
 
