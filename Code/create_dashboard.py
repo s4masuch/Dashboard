@@ -159,11 +159,11 @@ def upload_isins(contents):
     if contents is None:
         return "No file uploaded.", None
     
-    # Assuming you're using Dash's dcc.Upload component
-    uploaded_file = contents[0]  # Get the first uploaded file
-
+    # Get the uploaded file as a dictionary
+    uploaded_file = contents[0]
+    
+    # Get the content type of the uploaded file
     content_type = uploaded_file["content_type"]
-    content_string = uploaded_file["content"]
 
 
 
