@@ -5,7 +5,7 @@ import base64
 GITHUB_API_BASE_URL = "https://api.github.com"
 REPO_OWNER = "s4masuch"
 REPO_NAME = "Dashboard"
-FILE_PATH = "Data/ISIN-Upload/ISIN-Input.csv"  # URL-encoded path
+FILE_PATH = "Code/Data/ISIN-Upload/ISIN-Input.csv"  # URL-encoded path
 
 def upload_isins_to_github(file_path, file_content):
     github_token = os.getenv("GITHUB_TOKEN")
