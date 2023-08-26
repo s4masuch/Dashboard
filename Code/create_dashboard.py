@@ -52,7 +52,7 @@ dashboard_style = {
 # Define the layout of the dashboard
 app.layout = html.Div(style=dashboard_style, children=[
     html.Div(
-        html.H1("Julius Bär Portfolio Management Dashboard", style={'color': 'white', 'background-color': 'rgb(20, 30, 85)', 'padding': '10px'}),
+        html.H1("ISIN Analyser", style={'color': 'white', 'background-color': 'rgb(20, 30, 85)', 'padding': '10px'}),
         style={'text-align': 'center'}
     ),
     html.H2("Upload ISINs"),
