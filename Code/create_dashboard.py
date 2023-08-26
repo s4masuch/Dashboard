@@ -148,7 +148,6 @@ app.layout = html.Div(style=dashboard_style, children=[
 
 
 # Callback to upload the ISINs
-# Callback to upload the ISINs
 @app.callback(
     [Output('isin-status', 'children'),
      Output('confirmation-message', 'children')],
@@ -164,6 +163,17 @@ def upload_isins(contents):
     
     # Get the content type of the uploaded file
     content_type = uploaded_file["content_type"]
+    
+    # Check if the content type is 'text/csv'
+    if content_type == 'text/csv':
+        file_content = uploaded_file["content"].encode("utf-8")
+        file_path = "Data/ISIN-Upload/ISIN-Input.csv"  # Update the path accordingly
+        
+        result = upload_isins_to_github(file_path, base64.b64encode(file_content).decode())
+        return result, None
+    else:
+        return "Invalid file type.", None
+
 
 
 
