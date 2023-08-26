@@ -58,4 +58,3 @@ with open(file_path, 'r') as file:
     content_string = file.read()
 
 processed_count = upload_isins_from_file(file_path, content_string)
-print(f"{processed_count} ISINs processed. Upload result: {upload_result}")
