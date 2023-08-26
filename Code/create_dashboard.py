@@ -13,8 +13,6 @@ from upload_ISINs import upload_isins_to_github
 from create_data_frames import create_data_frames
 from enhancing_with_GPT import enhance_data
 
-app.config["REPO_OWNER"] = "s4masuch"
-app.config["REPO_NAME"] = "Dashboard"
 
 # Load the data from the Excel files
 df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="ESG Data")
@@ -26,6 +24,9 @@ isin_upload_dir = "Data/ISIN-Upload/"
 
 # Initialize the Dash app
 app = dash.Dash(__name__)
+
+app.config["REPO_OWNER"] = "s4masuch"
+app.config["REPO_NAME"] = "Dashboard"
 
 # Create a server variable that points to the underlying Flask server
 server = app.server
