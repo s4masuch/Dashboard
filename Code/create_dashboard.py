@@ -6,6 +6,7 @@ import plotly.express as px
 from dash import dash_table
 from dash import dcc, html, Input, Output, State
 import base64
+import dash_html_components as html
 
 # Custom functions from my modules
 from upload_ISINs import upload_isins_from_file, upload_isins_to_github
@@ -34,8 +35,21 @@ excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
 enhanced_reply = enhance_data(excel_filename)
 chatgpt_message = f"ChatGPT: {enhanced_reply}"
 
+
+
+
+# Define the style for the whole dashboard
+dashboard_style = {
+    'font-family': 'verlag'
+}
+
+
 # Define the layout of the dashboard
-app.layout = html.Div([
+app.layout = html.Div(style=dashboard_style, children=[
+    html.Div(
+        html.H1("Julius Bär Portfolio Management Dashboard", style={'color': 'white', 'background-color': 'rgb(20, 30, 85)', 'padding': '10px'}),
+        style={'text-align': 'center'}
+    ),
     html.H2("Upload ISINs"),
     dcc.Upload(
         id='upload-data',
@@ -53,7 +67,6 @@ app.layout = html.Div([
         children=[html.Div(id='confirmation-message', style={'margin-top': '10px'})],
     ),
 
-    # html.H2("1. Filter"),
     html.Div([
         dcc.Dropdown(
             id='company-dropdown',
@@ -87,13 +100,13 @@ app.layout = html.Div([
     ], style={'width': '25%', 'display': 'inline-block'}),
     html.Br(),  # Add a line break
     
-    html.H2("2. ESG Scores Over Time"),
+    html.H2("ESG Scores Over Time"),
     dcc.Graph(id='esg-graph'),
     
-    html.H2("3. Company Profiles"),
+    html.H2("Company Profiles"),
     html.Div(id='company-tiles', style={'display': 'flex', 'flex-wrap': 'wrap', 'max-width': '100%'}),
 
-    html.H2("4. Financials"),
+    html.H2("Financials"),
     dcc.Loading(
         id="loading-table",
         type="circle",
@@ -103,7 +116,11 @@ app.layout = html.Div([
                 columns=[
                     {'name': 'Company Name', 'id': 'Company name'},
                     {'name': 'As of Date', 'id': 'asOfDate'},
+                    {'name': 'Basic Average Share', 'id': 'BasicAverageShares'},
                     {'name': 'Total Revenue', 'id': 'TotalRevenue'},
+                    {'name': 'Operating Income', 'id': 'TotalOperatingIncomeAsReported'},
+                    {'name': 'Basic EPS', 'id': 'BasicEPS'},
+                    {'name': 'Total Debt', 'id': 'TotalDebt'},
                 ],
                 style_table={'width': '100%'},
                 style_data={'whiteSpace': 'normal', 'height': 'auto'},
@@ -113,10 +130,12 @@ app.layout = html.Div([
             )
         ],
     ),
-    html.H2("5. ChatGPT opinion"),
+    html.Hr(style={'border': '1px solid lightgray'}),
+    html.H2("ChatGPT opinion"),
     # Display ChatGPT message
     html.Div(chatgpt_message, id='chatgpt-opinion-placeholder',
-             style={'whiteSpace': 'pre-wrap', 'font-family': 'monospace'}
+             style={'whiteSpace': 'pre-wrap', 'font-family': 'monospace'},
+    html.Hr(style={'border': '1px solid lightgray'}),
     ),
 ])
 
