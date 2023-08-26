@@ -147,6 +147,22 @@ app.layout = html.Div(style=dashboard_style, children=[
 
 
 
+def upload_csv_to_github(repo_owner, repo_name, file_path, file_name, file_content):
+    github_token = os.getenv("GITHUB_TOKEN")
+    
+    if not github_token:
+        return "Error: GitHub token not provided"
+
+    g = Github(github_token)
+    repo = g.get_repo(f"{repo_owner}/{repo_name}")
+
+    try:
+        repo.create_file(file_path, f"Upload {file_name}", file_content, branch="main")
+        return f"File {file_name} uploaded to GitHub successfully"
+    except Exception as e:
+        return f"Error uploading file to GitHub: {str(e)}"
+
+
 # Callback to upload the ISINs
 @app.callback(
     [Output('isin-status', 'children'),
@@ -161,15 +177,16 @@ def upload_isins(contents):
     # Get the uploaded file as a dictionary
     uploaded_file = contents[0]
     
-    # Get the content type of the uploaded file
-    content_type = uploaded_file["content_type"]
+    # Get the file name and content type
+    file_name = uploaded_file['filename']
+    content_type = uploaded_file['content_type']
     
     # Check if the content type is 'text/csv'
     if content_type == 'text/csv':
-        file_content = uploaded_file["content"].encode("utf-8")
+        file_content = uploaded_file['content'].encode('utf-8')
         file_path = "Data/ISIN-Upload/ISIN-Input.csv"  # Update the path accordingly
         
-        result = upload_csv_to_github(repo_owner, repo_name, file_path, base64.b64encode(file_content).decode())
+        result = upload_csv_to_github(repo_owner, repo_name, file_path, file_name, file_content)
         return result, None
     else:
         return "Invalid file type.", None
