@@ -36,7 +36,7 @@ server = app.server
 all_companies = profile_df['longName'].unique()
 
 # Get ChatGPT message
-excel_filename = 'Code/Data/Data_Frames/latest_financials.xlsx'
+excel_filename = 'Data/Data_Frames/latest_financials.xlsx'
 enhanced_reply = enhance_data(excel_filename)
 chatgpt_message = f"ChatGPT: {enhanced_reply}"
 
