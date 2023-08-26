@@ -35,9 +35,9 @@ def upload_isins_to_github(file_path, file_content):
 
 # Call this function with the file content to update the file on GitHub
 def upload_isins_from_file(file_path, content_string):
-    # Save the uploaded content as a file in the ISIN upload directory
+    # Save the uploaded content as a binary file in the ISIN upload directory
     with open(file_path, 'wb') as f:
-        f.write(base64.b64decode(content_string))
+        f.write(content_string.encode('utf-8'))
 
     # Read ISINs from the provided file_path
     isin_list = []
