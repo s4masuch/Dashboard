@@ -172,17 +172,18 @@ def upload_csv_to_github(repo_owner, repo_name, file_path, file_name, file_conte
     prevent_initial_call=True
 )
 def upload_isins(contents):
+    print("Contents:", contents)  # Add this line
     if contents is None:
         return "No file uploaded.", None
-    
-    # Get the uploaded file as a dictionary
+
     uploaded_file = contents[0]
-    
-    # Get the file content
+    print("Uploaded File:", uploaded_file)  # Add this line
+
     file_content = uploaded_file['content']
+    print("File Content:", file_content[:50])  # Add this line
     
-    # Get the file name from the uploaded file
     file_name = uploaded_file['filename']
+    print("File Name:", file_name)  # Add this line
     
     # Check if the content type is 'text/csv'
     if file_name.lower().endswith('.csv'):
