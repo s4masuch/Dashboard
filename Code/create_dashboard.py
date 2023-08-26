@@ -16,12 +16,12 @@ from enhancing_with_GPT import enhance_data
 
 
 # Load the data from the Excel files
-df = pd.read_excel("Code/Data/Data_Frames/combined_esg_data.xlsx", sheet_name="ESG Data")
-profile_df = pd.read_excel("Code/Data/Data_Frames/combined_esg_data.xlsx", sheet_name="Company Profiles")
-financials_df = pd.read_excel("Code/Data/Data_Frames/combined_esg_data.xlsx", sheet_name="Financials")
+df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="ESG Data")
+profile_df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="Company Profiles")
+financials_df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="Financials")
 
 # Path to the directory for ISIN uploads
-isin_upload_dir = "Code/Data/ISIN-Upload/"
+isin_upload_dir = "Data/ISIN-Upload/"
 
 # Initialize the Dash app
 app = dash.Dash(__name__)
