@@ -25,8 +25,8 @@ isin_upload_dir = "Data/ISIN-Upload/"
 # Initialize the Dash app
 app = dash.Dash(__name__)
 
-app.config["REPO_OWNER"] = "s4masuch"
-app.config["REPO_NAME"] = "Dashboard"
+repo_owner = os.environ.get("REPO_OWNER")
+repo_name = os.environ.get("REPO_NAME")
 
 # Create a server variable that points to the underlying Flask server
 server = app.server
