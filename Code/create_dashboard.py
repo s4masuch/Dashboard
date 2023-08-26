@@ -13,6 +13,9 @@ from upload_ISINs import upload_isins_from_file, upload_isins_to_github
 from create_data_frames import create_data_frames
 from enhancing_with_GPT import enhance_data
 
+app.config["REPO_OWNER"] = "s4masuch"
+app.config["REPO_NAME"] = "Dashboard"
+
 # Load the data from the Excel files
 df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="ESG Data")
 profile_df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="Company Profiles")
