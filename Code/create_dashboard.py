@@ -45,7 +45,7 @@ chatgpt_message = f"ChatGPT: {enhanced_reply}"
 
 # Define the style for the whole dashboard
 dashboard_style = {
-    'font-family': 'verlag'
+    'font-family': 'verlag book'
 }
 
 
