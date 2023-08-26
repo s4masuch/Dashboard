@@ -7,6 +7,7 @@ from dash import dash_table
 from dash import dcc, html, Input, Output, State
 import base64
 import dash_html_components as html
+import os
 
 # Custom functions from my modules
 from upload_ISINs import upload_isins_to_github
