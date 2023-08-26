@@ -164,6 +164,7 @@ def upload_csv_to_github(repo_owner, repo_name, file_path, file_name, file_conte
 
 
 # Callback to upload the ISINs
+# Callback to upload the ISINs
 @app.callback(
     [Output('isin-status', 'children'),
      Output('confirmation-message', 'children')],
@@ -177,19 +178,21 @@ def upload_isins(contents):
     # Get the uploaded file as a dictionary
     uploaded_file = contents[0]
     
-    # Get the file name and content type
+    # Get the file content
+    file_content = uploaded_file['content']
+    
+    # Get the file name from the uploaded file
     file_name = uploaded_file['filename']
-    content_type = uploaded_file['content_type']
     
     # Check if the content type is 'text/csv'
-    if content_type == 'text/csv':
-        file_content = uploaded_file['content'].encode('utf-8')
+    if file_name.lower().endswith('.csv'):
         file_path = "Data/ISIN-Upload/ISIN-Input.csv"  # Update the path accordingly
         
         result = upload_csv_to_github(repo_owner, repo_name, file_path, file_name, file_content)
         return result, None
     else:
         return "Invalid file type.", None
+
 
 
 
