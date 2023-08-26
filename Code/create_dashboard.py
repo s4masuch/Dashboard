@@ -134,9 +134,8 @@ app.layout = html.Div(style=dashboard_style, children=[
     html.H2("ChatGPT opinion"),
     # Display ChatGPT message
     html.Div(chatgpt_message, id='chatgpt-opinion-placeholder',
-             style={'whiteSpace': 'pre-wrap', 'font-family': 'monospace'},
+             style={'whiteSpace': 'pre-wrap', 'font-family': 'monospace'}),
     html.Hr(style={'border': '1px solid lightgray'}),
-    ),
 ])
 
 
