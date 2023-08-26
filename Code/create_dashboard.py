@@ -164,7 +164,6 @@ def upload_csv_to_github(repo_owner, repo_name, file_path, file_name, file_conte
 
 
 # Callback to upload the ISINs
-# Callback to upload the ISINs
 @app.callback(
     [Output('isin-status', 'children'),
      Output('confirmation-message', 'children')],
@@ -172,15 +171,20 @@ def upload_csv_to_github(repo_owner, repo_name, file_path, file_name, file_conte
     prevent_initial_call=True
 )
 def upload_isins(contents):
-    print("Contents:", contents)  # Add this line
     if contents is None:
         return "No file uploaded.", None
-
+    
+    # Get the uploaded file as a dictionary
     uploaded_file = contents[0]
     print("Uploaded File:", uploaded_file)  # Add this line
-
-    file_content = uploaded_file['content']
+    
+    # Get the file content (base64 encoded)
+    base64_content = uploaded_file['content']
     print("File Content:", file_content[:50])  # Add this line
+    
+    # Decode the base64 content to get the actual CSV data
+    csv_content = base64.b64decode(base64_content).decode('utf-8')
+    
     
     file_name = uploaded_file['filename']
     print("File Name:", file_name)  # Add this line
