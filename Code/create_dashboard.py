@@ -159,24 +159,11 @@ def upload_isins(contents):
     if contents is None:
         return "No file uploaded.", None
     
-    # Get the content of the uploaded file
-    content_type, content_string = contents[0].split(',')
-    
-    # Construct the file path
-    file_path = os.path.join(isin_upload_dir, 'ISIN-Input.csv')
-    
-    # Process the uploaded ISINs and get the processed count
-    processed_count = upload_isins_from_file(file_path, content_string)
+    # Assuming you're using Dash's dcc.Upload component
+    uploaded_file = contents[0]  # Get the first uploaded file
 
-    status = f"{processed_count} ISINs could be processed."
-    confirmation_message = None
-
-    if processed_count > 0:
-        df, profile_df, financials_df = create_data_frames(isin_list)
-        save_data_frames(df, profile_df, financials_df)
-        confirmation_message = f"DataFrames saved successfully."
-    
-    return status, confirmation_message
+    content_type = uploaded_file["content_type"]
+    content_string = uploaded_file["content"]
 
 
 
