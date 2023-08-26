@@ -22,7 +22,7 @@ profile_df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name
 financials_df = pd.read_excel("Data/Data_Frames/combined_esg_data.xlsx", sheet_name="Financials")
 
 # Path to the directory for ISIN uploads
-isin_upload_dir = "Code/Data/ISIN-Upload/"
+isin_upload_dir = "Data/ISIN-Upload/"
 
 # Initialize the Dash app
 app = dash.Dash(__name__)
