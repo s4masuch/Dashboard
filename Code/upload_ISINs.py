@@ -1,5 +1,6 @@
 import os
 import requests
+import base64
 
 GITHUB_API_BASE_URL = "https://api.github.com"
 REPO_OWNER = "s4masuch"
