@@ -9,7 +9,7 @@ import base64
 import dash_html_components as html
 
 # Custom functions from my modules
-from upload_ISINs import upload_isins_from_file, upload_isins_to_github
+from upload_ISINs import upload_isins_to_github
 from create_data_frames import create_data_frames
 from enhancing_with_GPT import enhance_data
 
