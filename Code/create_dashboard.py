@@ -161,7 +161,7 @@ def upload_isins(contents):
     content_type, content_string = contents[0].split(',')
     
     # Construct the file path
-    file_path = os.path.join(isin_upload_dir, 'ISIN Input.csv')
+    file_path = os.path.join(isin_upload_dir, 'ISIN-Input.csv')
     
     # Process the uploaded ISINs and get the processed count
     processed_count = upload_isins_from_file(file_path, content_string)
