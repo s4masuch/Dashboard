@@ -4,7 +4,7 @@ import requests
 GITHUB_API_BASE_URL = "https://api.github.com"
 REPO_OWNER = "s4masuch"
 REPO_NAME = "Dashboard"
-FILE_PATH = "Code/Data/ISIN-Upload/ISIN-Input.csv"  # URL-encoded path
+FILE_PATH = "Data/ISIN-Upload/ISIN-Input.csv"  # URL-encoded path
 
 def upload_isins_to_github(file_path, file_content):
     github_token = os.getenv("GITHUB_TOKEN")
@@ -52,7 +52,7 @@ def upload_isins_from_file(file_path, content_string):
     return processed_count
 
 # Example usage
-file_path = "Code/Data/ISIN-Upload/ISIN-Input.csv"
+file_path = "Data/ISIN-Upload/ISIN-Input.csv"
 with open(file_path, 'r') as file:
     content_string = file.read()
 
