@@ -169,7 +169,7 @@ def upload_isins(contents):
         file_content = uploaded_file["content"].encode("utf-8")
         file_path = "Data/ISIN-Upload/ISIN-Input.csv"  # Update the path accordingly
         
-        result = upload_isins_to_github(file_path, base64.b64encode(file_content).decode())
+        result = upload_csv_to_github(repo_owner, repo_name, file_path, base64.b64encode(file_content).decode())
         return result, None
     else:
         return "Invalid file type.", None
