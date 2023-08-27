@@ -187,6 +187,7 @@ def upload_isins(contents):
     print(f"Repo Name: {repo_name}")
     print(f"File Path: {file_path}")
     
+    file_path = "Data/ISIN-Upload/ISIN-Input.csv"
     result = upload_isins_to_github(file_path, base64_content)
     return result, None
 
