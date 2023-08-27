@@ -180,9 +180,11 @@ def upload_isins(contents):
     # Encode the file content as base64
     base64_content = base64.b64encode(file_content).decode('utf-8')
     
+    # Define the file path on GitHub where you want to upload the file
+    file_path = "Data/ISIN-Upload/ISIN-Input.csv"  # Update the path accordingly
+    
     result = upload_isins_to_github(file_path, base64_content)
     return result, None
-
 
 
 
