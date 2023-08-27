@@ -174,29 +174,14 @@ def upload_isins(contents):
     if contents is None:
         return "No file uploaded.", None
     
-    # Get the uploaded file as a dictionary
-    uploaded_file = contents[0]
-    print("Uploaded File:", uploaded_file)  # Add this line
+    # Get the uploaded file content
+    file_content = contents[0]
     
-    # Get the file content (base64 encoded)
-    base64_content = uploaded_file['content']
-    print("File Content:", file_content[:50])  # Add this line
+    # Encode the file content
+    base64_content = base64.b64encode(file_content).decode('utf-8')
     
-    # Decode the base64 content to get the actual CSV data
-    csv_content = base64.b64decode(base64_content).decode('utf-8')
-    
-    
-    file_name = uploaded_file['filename']
-    print("File Name:", file_name)  # Add this line
-    
-    # Check if the content type is 'text/csv'
-    if file_name.lower().endswith('.csv'):
-        file_path = "Data/ISIN-Upload/ISIN-Input.csv"  # Update the path accordingly
-        
-        result = upload_csv_to_github(repo_owner, repo_name, file_path, file_name, file_content)
-        return result, None
-    else:
-        return "Invalid file type.", None
+    result = upload_isins_to_github(file_path, base64_content)
+    return result, None
 
 
 
