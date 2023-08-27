@@ -174,10 +174,10 @@ def upload_isins(contents):
     if contents is None:
         return "No file uploaded.", None
     
-    # Get the uploaded file content
-    file_content = contents[0]
+    # Get the uploaded file content (as bytes)
+    file_content = contents[0].encode('utf-8')
     
-    # Encode the file content
+    # Encode the file content as base64
     base64_content = base64.b64encode(file_content).decode('utf-8')
     
     result = upload_isins_to_github(file_path, base64_content)
