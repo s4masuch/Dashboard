@@ -4,7 +4,10 @@ import base64
 
 GITHUB_API_BASE_URL = "https://api.github.com"
 
-def upload_isins_to_github(file_path, file_content):
+def upload_isins_to_github(file_path, file_content):   
+    print(f"In upload_ISINs.py")
+    print(f"Debug: file_path={file_path}")
+    print(f"Debug: file_content={file_content}")
     github_token = os.getenv("GITHUB_TOKEN")
     repo_owner = os.getenv("REPO_OWNER")
     repo_name = os.getenv("REPO_NAME")
