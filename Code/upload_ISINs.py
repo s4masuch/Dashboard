@@ -25,13 +25,22 @@ def upload_isins_to_github(file_path, file_content):
         file_sha = response.json()["sha"]
         response = requests.put(url, json={
             "message": "Update ISIN file",
-            "content": file_content,
+            "content": base64.b64encode(file_content.encode()).decode(),  # Encode content as base64
             "sha": file_sha
         }, headers=headers)
 
         if response.status_code == 200:
             return "File updated on GitHub successfully"
         else:
-            return f"Error updating file on GitHub: {response.text}"
+            return f"Error updating file on GitHub: {response.status_code} - {response.text}"
     else:
-        return f"Error finding file on GitHub: {response.text}"
+        # If the file doesn't exist, create it
+        response = requests.post(url, json={
+            "message": "Create ISIN file",
+            "content": base64.b64encode(file_content.encode()).decode()  # Encode content as base64
+        }, headers=headers)
+
+        if response.status_code == 201:
+            return "File created on GitHub successfully"
+        else:
+            return f"Error creating file on GitHub: {response.status_code} - {response.text}"
