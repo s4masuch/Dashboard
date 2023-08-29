@@ -181,13 +181,12 @@ def upload_isins(contents):
     base64_content = base64.b64encode(file_content).decode('utf-8')
     
     # Define the file path on GitHub where you want to upload the file
-    file_path = "Data/ISIN-Upload/ISIN-Input.csv"  # Update the path accordingly
+    file_path = "Code/Data/ISIN-Upload/ISIN-Input.csv"  # Update the path accordingly
     
     print(f"Repo Owner: {repo_owner}")
     print(f"Repo Name: {repo_name}")
     print(f"File Path: {file_path}")
     
-    file_path = "Data/ISIN-Upload/ISIN-Input.csv"
     result = upload_isins_to_github(file_path, base64_content)
     return result, None
 
