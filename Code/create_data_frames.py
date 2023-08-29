@@ -3,6 +3,7 @@ import urllib.request
 import json
 import yahooquery as yq
 
+# Derive Symbol from ISIN
 def get_symbol(query, preferred_exchange='AMS'):
     try:
         data = yq.search(query)
@@ -19,6 +20,7 @@ def get_symbol(query, preferred_exchange='AMS'):
                 break
         return symbol
 
+# Create data Frames
 def create_data_frames(isin_list):
     # Read ISINs from CSV file
     isin_df = pd.read_csv('Data/ISIN-Upload/ISIN Input.csv')
