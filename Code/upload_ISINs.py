@@ -38,8 +38,8 @@ def upload_isins_to_github(file_path, file_content):
             return f"Error updating file on GitHub: {response.status_code} - {response.text}"
     else:
         # If the file doesn't exist, create it
-        response = requests.post(url, json={
-            "message": "Create ISIN file",
+        response = requests.put(url, json={
+            "message": "Upload ISIN file",
             "content": base64.b64encode(file_content.encode()).decode()  # Encode content as base64
         }, headers=headers)
 
