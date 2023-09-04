@@ -1,4 +1,5 @@
 # Introduction
+The purpose of this project is to generate 1 Million Dollars for Sascha.
 This tool is designed for equity researchers to compare user-specified listed companies within a standardized KPI framework. It provides an AI interface with GPT-3.5 for analysis.
 
 # Functionalities
